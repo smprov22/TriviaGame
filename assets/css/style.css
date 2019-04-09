@@ -1,0 +1,66 @@
+body{
+    background: url("../images/Pixar-Movies-BG2.jpg");
+    background-position: top;
+    background-repeat: none;
+    background-size: cover;
+    height: 100%;
+    font-family: 'Russo One', sans-serif;
+    letter-spacing: 1px;
+    font-size: 25px;
+    color: white;
+}
+
+header{
+	margin-bottom: 20px;
+}
+
+.container{
+	margin-top: 50px;
+	text-align: left;
+	height: 100%;
+    width: 500px;
+    margin-left: 50px;
+}
+
+.btn-primary, .reset{
+	background-color: #313477;
+	color: white;
+	font-family: 'Luckiest Guy', sans-serif;
+	font-size: 30px;
+	padding: 20px;
+    margin-top: 20px;
+    margin-left: 50px;
+    max-width: 200px;
+    text-align: center;
+}
+.btn-primary:hover, .reset:hover{
+	background-color: #202364;
+}
+
+h1 {
+    font-family: 'Luckiest Guy', sans-serif;
+    margin-top: 100px;
+    letter-spacing: 2px;
+}
+
+h2, #message, #finalMessage{
+    font-family: 'Russo One', sans-serif;
+    letter-spacing: 2px;
+}
+
+.selection:hover{
+	color: #202364;
+	padding: 0px 10px;
+}
+
+#gif{
+    margin: 30px;
+}
+
+@media screen and (max-width:640px){
+	.container{
+		width: 500px;
+		margin-top: 200px;
+		size: 200%;
+	}	
+}
