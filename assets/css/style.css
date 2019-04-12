@@ -1,28 +1,23 @@
 body{
-    background: url("../images/Pixar-Movies-BG2.jpg");
-    background-position: top;
-    background-repeat: none;
+    background-image: url("../images/Pixar-Movies-BG2.jpg");
     background-size: cover;
     height: 100%;
     font-family: 'Russo One', sans-serif;
     letter-spacing: 1px;
     font-size: 25px;
     color: white;
-}
-
-header{
-	margin-bottom: 20px;
+    position: relative;
 }
 
 .container{
 	margin-top: 50px;
 	text-align: left;
-	height: 100%;
+	height: 500px;
     width: 500px;
-    margin-left: 50px;
+    margin-left: 80px;
 }
 
-.btn-primary, .reset{
+.btn-primary {
 	background-color: #313477;
 	color: white;
 	font-family: 'Luckiest Guy', sans-serif;
@@ -33,14 +28,16 @@ header{
     max-width: 200px;
     text-align: center;
 }
-.btn-primary:hover, .reset:hover{
-	background-color: #202364;
-}
 
 h1 {
     font-family: 'Luckiest Guy', sans-serif;
     margin-top: 100px;
     letter-spacing: 2px;
+    text-shadow:
+    -5px -5px 0 #313477,  
+     5px -5px 0 #313477,
+     -5px 5px 0 #313477,
+      5px 5px 0 #313477;
 }
 
 h2, #message, #finalMessage{
@@ -54,13 +51,16 @@ h2, #message, #finalMessage{
 }
 
 #gif{
-    margin: 30px;
+    margin-top: 30px;
 }
 
-@media screen and (max-width:640px){
-	.container{
-		width: 500px;
-		margin-top: 200px;
-		size: 200%;
-	}	
+#pauseSong, #playSong {
+    background-color: #313477;
+	color: white;
+	font-family: 'Russo One', sans-serif;
+	font-size: 15px;
+	padding: 10px;
+    text-align: center;
+    float: left;
+    margin-right: 10px;
 }

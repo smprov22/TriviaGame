@@ -23,10 +23,19 @@
         <div id="gif"></div>
         <!-- Scoreboard -->
         <div id="finalMessage"></div>
+        <br>
         <div id="numberCorrect"></div>
         <div id="numberIncorrect"></div>
         <div id="unanswered"></div>
         <div id="playAgainBtn"></div>
+    </div>
+
+    <div>
+        <button id="playSong" onclick = "playAudio()" type="button" class="btn btn-secondary btn-sm">Play Music</button>
+        <button id="pauseSong" onclick = "pauseAudio()"type="button" class="btn btn-secondary btn-sm">Pause Music</button>
+        <audio autoplay id ="upTheme">
+            <source src="assets\audio\Up Soundtrack - Married Life.mp3">
+        </audio>
     </div>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script type="text/javascript" src="assets/javascript/game.js"></script>

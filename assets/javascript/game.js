@@ -1,6 +1,6 @@
 //Global variables
 //Questions and answers
-var triviaQuestions = [{
+var questionsArray = [{
     question: "What is the last name of the superhero family in The Incredibles movies?",
     answerList: ["Smith", "Byrd", "Parr", "Prow"],
     answer: 2
@@ -63,13 +63,7 @@ var increment;
 var counter;
 //Array of all the gifs to be shown on the answer page
 var gifs = ["question1", "question2", "question3", "question4", "question5", "question6", "question7", "question8", "question9", "question10"];
-//Array of messages to be displayed on the answer page
-// var messages = {
-//     correct: "You got it! Great job!",
-//     incorrect: "Not quite, time to watch more Pixar movies!",
-//     unanswered: "Too slow! Guess faster next time!",
-//     end: "Let's check out your final score!"
-// }
+
 
 //Start button
 $("#startBtn").on("click", function() {
@@ -102,7 +96,7 @@ function newGame() {
 //New question function
     //Show time remaining and start countdown
     //Show question 1
-    //Show options 
+    //Show answers 
     //Record user answer
     //Call compare answer function
 
@@ -112,13 +106,13 @@ function newQuestion () {
 	$('#gif').empty();
     answered = true;
     
-    $(".question").html("<h3>" + triviaQuestions[currentQuestion].question + "</h3>");
+    $(".question").html("<h3>" + questionsArray[currentQuestion].question + "</h3>");
         for (var i = 0; i < 4; i++) {
-            var choices = $("<div>");
-            choices.text(triviaQuestions[currentQuestion].answerList[i]);
-            choices.attr({"data-index": i});
-            choices.addClass("selection");
-            $(".answerList").append(choices);
+            var answers = $("<div>");
+            answers.text(questionsArray[currentQuestion].answerList[i]);
+            answers.attr({"data-index": i});
+            answers.addClass("selection");
+            $(".answerList").append(answers);
         }
         countdown();
         //Choosing answer stops countdown and launches answer page
@@ -133,20 +127,19 @@ function countdown() {
     counter = 10;
     $("#timeRemaining").html("<h3>Time Remaining: " + counter + "</h3>");
 	answered = true;
-    interval = setInterval(showCountdown, 1000);
-}
+    interval = setInterval(function() {
+        	counter--;
+        	$("#timeRemaining").html("<h3>Time Remaining: " + counter + "</h3>");
+        	if(counter < 1){
+        		clearInterval(interval);
+        		answered = false;
+        		answerPage();
+            }
+        }, 1000);
+}   
 
-function showCountdown() {
-	counter--;
-	$("#timeRemaining").html("<h3>Time Remaining: " + counter + "</h3>");
-	if(counter < 1){
-		clearInterval(interval);
-		answered = false;
-		answerPage();
-	}
-}
 //Answer Page
-    //Decide if the user selected the correct answer
+    //Decide if the user selected the correct answer (if then statement)
     //Declare a function to decide if the selected answer is correct
     //If answer is right, display right answer text, show gif, show correct answer, add to correct answer count
     //If answer is wrong, display incorrect answer text, show gif, show correct answer, add to incorrect answer count
@@ -156,35 +149,36 @@ function showCountdown() {
 function answerPage() {
 	$(".selection").empty(); //Clears question page
     $(".question").empty();
-    
-    var rightAnswerText = triviaQuestions[currentQuestion].answerList[triviaQuestions[currentQuestion].answer];
-    var rightAnswerIndex = triviaQuestions[currentQuestion].answer;
+    $("#timeRemaining").empty();
+    //store the index of the right answer as well as the string of the right answer
+    var answerText = questionsArray[currentQuestion].answerList[questionsArray[currentQuestion].answer];
+    var answerIndex = questionsArray[currentQuestion].answer;
+    //adds appropriate gif to answer page
     $("#gif").html('<img src = "assets/images/'+ gifs[currentQuestion] +'.gif" width = "300px">');
     //Check if user selection is correct answer
-    if((userAnswer === rightAnswerIndex) && (answered === true)) {
+    if((userAnswer === answerIndex) && (answered === true)) {
         $("#message").html("You got it! Great job!");
-        $("#correctAnswer").html("The correct answer was: " + rightAnswerText);
         correctAnswer++;
     }
-    else if((userAnswer != rightAnswerIndex) && (answered === true)) {
+    else if((userAnswer != answerIndex) && (answered === true)) {
         $("#message").html("Not quite, time to watch more Pixar movies!");
-        $("#correctAnswer").html("The correct answer was: " + rightAnswerText);
+        $("#correctAnswer").html("The correct answer was: " + answerText);
         incorrectAnswer++
     }
     else {
         unanswered++
         $("#message").html("Too slow! Guess faster next time!");
-        $("#correctAnswer").html("The correct answer was: " + rightAnswerText);
+        $("#correctAnswer").html("The correct answer was: " + answerText);
     }
-
-    if(currentQuestion == (triviaQuestions.length-1)){
-		setTimeout(scorePage, 5000)
+    //decides if the next question should be displayed or the final score page
+    if(currentQuestion == (questionsArray.length-1)){
+		setTimeout(scorePage, 4000)
 	} else{
 		currentQuestion++;
-		setTimeout(newQuestion, 5000);
+		setTimeout(newQuestion, 4000);
 	}	
 }
-//On score page, hide questions, options, and answers
+//On score page, hide questions and answers
     //Display number of correct, incorrect, and unanswered questions
     //Have button with option to play again 
 function scorePage() {
@@ -197,7 +191,18 @@ function scorePage() {
     $("#numberCorrect").html("Questions answered correctly: " + correctAnswer)
     $("#numberIncorrect").html("Questions answered incorrectly: " + incorrectAnswer)
     $("#unanswered").html("Unanswered questions: " + unanswered)
-    $("#playAgainBtn").addClass("reset");
+    $("#playAgainBtn").addClass("btn-primary");
 	$("#playAgainBtn").show();
 	$("#playAgainBtn").html("Play Again?");
+}
+
+//music functions
+var song = $("#upTheme")[0];
+
+function playAudio() {
+	song.play();
+}
+
+function pauseAudio() {
+	song.pause();
 }
