@@ -2,7 +2,7 @@
 
 https://smprov22.github.io/TriviaGame/
 
-![Pixar-Trivia](/assets/images/screenshot/Trivia_screenshot.PNG)
+![Pixar-Trivia](/assets/images/screenshot/Trivia-screenshot.PNG)
 
 For this project we were asked to make a 10 question trivia game.  We could theme it and style it however we wanted.  I chose a Pixar theme for my game. There are 10 questions and you have 10 seconds to answer each question before time runs out.  After each question an answer page comes up telling you if you got the question right, wrong, or ran out of time.  After all 10 questions have been answered (or if time runs out on the last question) the final score page is revealed and tells you the number of questions you got right/wrong/unanswered.  There is also the option to play again.  I also added music to the page that the player can listen to if they choose.
 
